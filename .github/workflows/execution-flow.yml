@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - master
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -51,7 +52,7 @@ jobs:
         with:
           path: ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
+      - name: Install dependencies1
         run: npm ci
       - name: Build website
         id: build-website
