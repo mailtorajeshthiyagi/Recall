@@ -16,7 +16,7 @@ jobs:
         id: nam_list
         run: |
          $a= "file testing"
-         write-output  "script_file=$a">> $$env: GITHUB_OUTPUT
+         write-output  "script_file = $a" >> $env: GITHUB_OUTPUT
   deploy:
        needs: lint
        runs-on: ubuntu-latest
