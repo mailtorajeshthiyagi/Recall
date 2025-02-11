@@ -1,0 +1,32 @@
+name: Website Deployment1
+on:
+  push:
+    branches:
+      - main   
+      - master   
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    outputs:
+        script_file: ${{steps.nam_list.outputs.script_file}}
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name : what is my name 
+        id: nam_list
+        run: |
+         $a= "file testing"
+         write-output  "script_file=$a">> $$env: GITHUB_OUTPUT
+  deploy:
+       needs: lint
+       runs-on: ubuntu-latest
+       steps:
+        - name: Get code
+          uses: actions/checkout@v3
+        - name : what is my name 
+          id: nam_list
+          run: |
+            write-host ${{ needs.lint.outputs.script_file }}
+
+    
+       
