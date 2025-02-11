@@ -6,7 +6,7 @@ on:
       - master   
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     outputs:
         script_file: ${{steps.nam_list.outputs.script_file}}
     steps:
@@ -16,10 +16,10 @@ jobs:
         id: nam_list
         run: |
          $a= "file testing"
-         write-output  "script_file = $a" >> $env: GITHUB_OUTPUT
+         echo  "script_file=$a" >> $env:GITHUB_OUTPUT
   deploy:
        needs: lint
-       runs-on: ubuntu-latest
+       runs-on: windows-latest
        steps:
         - name: Get code
           uses: actions/checkout@v3
