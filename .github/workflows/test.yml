@@ -23,7 +23,7 @@ jobs:
         id: npm_test_status
         run: npm test
       - name: Upload artifacts
-        uses: action/upload-artifacts@v4
+        uses: action/upload-artifact@v4
         with:
           name: Upload 
           path: test
