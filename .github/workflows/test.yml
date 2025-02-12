@@ -41,6 +41,7 @@ jobs:
             write-host ${{ needs.lint.outputs.script_file }}
   failure:
        needs: [lint, deploy]
+       if: failure() 
        runs-on: windows-latest
        steps:
         - name: Get code1
