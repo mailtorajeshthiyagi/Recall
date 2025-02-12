@@ -39,6 +39,14 @@ jobs:
           id: nam_list
           run: |
             write-host ${{ needs.lint.outputs.script_file }}
-
-    
+  failure:
+       needs: [lint, deploy]
+       runs-on: windows-latest
+       steps:
+        - name: Get code1
+          uses: actions/checkout@v3
+        - name : what is my name 
+          id: nam_list
+          run: |
+            write-host "failure  on jobs "
        
