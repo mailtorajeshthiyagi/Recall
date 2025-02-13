@@ -51,8 +51,8 @@ jobs:
           uses: actions/checkout@v3
         - name: Getdb name
           run: |
-           $a = "${{ env.appNAME }}""
-            write-host $a
+           $a = "${{ env.appNAME }}"
+            write-host "$a"
             
         - name : what is my name 
           id: nam_list
