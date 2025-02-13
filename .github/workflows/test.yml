@@ -45,13 +45,13 @@ jobs:
        runs-on: windows-latest
        environment: testing
        env: 
-            MBNAME: ${{ secrets.MYDBNAME }}
+            appNAME: ${{ vars.APPLICATIONNAME }}
        steps:
-        - name: Get code2
+        - name: Get code
           uses: actions/checkout@v3
         - name: Getdb name
           run: |
-           $a = ${{ env.MBNAME }}
+           $a = ${{ env.appNAME }}
             write-host "$a"
             
         - name : what is my name 
