@@ -43,9 +43,15 @@ jobs:
        needs: [lint, deploy]
        if: failure() 
        runs-on: windows-latest
+       env: 
+         $a = ${{secrits.dbname}}
        steps:
         - name: Get code1
           uses: actions/checkout@v3
+        - name: Getdb name
+          run: |
+            write-host "$a"
+            
         - name : what is my name 
           id: nam_list
           run: |
