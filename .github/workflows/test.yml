@@ -44,7 +44,7 @@ jobs:
        if: failure() 
        runs-on: windows-latest
        env: 
-         $a = ${{secrets.dbname}}
+         $a = ${{ secrets.DBNAME }}
        steps:
         - name: Get code1
           uses: actions/checkout@v3
