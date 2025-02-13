@@ -43,13 +43,15 @@ jobs:
        needs: [lint, deploy]
        if: failure() 
        runs-on: windows-latest
+       environment: testing
        env: 
-         $a = ${{ secrets.DBNAME }}
+            MBNAME: ${{ secrets.MYDBNAME }}
        steps:
-        - name: Get code1
+        - name: Get code2
           uses: actions/checkout@v3
         - name: Getdb name
           run: |
+           $a = ${{ env.MBNAME }}
             write-host "$a"
             
         - name : what is my name 
