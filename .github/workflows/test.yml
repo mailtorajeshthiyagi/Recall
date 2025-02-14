@@ -25,10 +25,10 @@ jobs:
         with:
           name: cache_check
           path: node_modules
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+          key: cache-module-${{ hashFiles('**/package-lock.json') }}
       - name: npm install
         if: steps.cache_test.outputs.cache-hit != 'true'
-        run: npm install
+        run: npm install1
       - name : npm test
         id: npm_test_status
         run: npm test
