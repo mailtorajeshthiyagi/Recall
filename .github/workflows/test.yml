@@ -6,7 +6,7 @@ on:
       - master  
 jobs:
   lint:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     outputs:
         script_file: ${{steps.nam_list.outputs.script_file}}
     steps:
@@ -39,10 +39,20 @@ jobs:
 
   deploy:
        needs: lint
-       runs-on: windows-latest
+       runs-on: ubuntu-latest
        steps:
         - name: Get code1
           uses: actions/checkout@v3
+        - name: cache_module_installation
+          uses: actions/cache@v4
+          id: cache_test
+          with:
+            name: cache_check
+            path: node_modules
+            key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+        - name: install code
+          if: steps.cache_test.outputs.cache-hit != 'true'
+          run: npm install 
         - name : what is my name 
           id: nam_list
           run: |
