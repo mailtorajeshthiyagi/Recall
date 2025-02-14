@@ -2,8 +2,8 @@ name: Website Deployment1
 on:
   push:
     branches:
-      - main   
-      - master   
+      - main
+      - master  
 jobs:
   lint:
     runs-on: windows-latest
@@ -17,7 +17,15 @@ jobs:
         run: |
          $a= "file testing"
          echo  "script_file=$a" >> $env:GITHUB_OUTPUT
+      - name: cache_module_installation
+        uses: actions/cache@v4
+        id: cache_test
+        with:
+          name: cache_check
+          path: node_modules
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: npm install
+        if: steps.cache_test.outputs.cache-hit != 'true'
         run: npm install
       - name : npm test
         id: npm_test_status
@@ -38,7 +46,7 @@ jobs:
         - name : what is my name 
           id: nam_list
           run: |
-            write-host ${{ needs.lint.outputs.script_file }}
+            echo ${{ needs.lint.outputs.script_file }}
   failure:
        needs: [lint, deploy]
        if: failure() 
@@ -52,10 +60,10 @@ jobs:
         - name: Getdb name
           run: |
            $a = "${{ env.appNAME }}"
-            write-host "$a"
+           echo "$a"
             
         - name : what is my name 
           id: nam_list
           run: |
-            write-host "failure  on jobs "
+           echo "failure  on jobs "
        
