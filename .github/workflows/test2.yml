@@ -22,10 +22,16 @@ jobs:
          run: npm install      
       
       -  name: Upload repository1
+         id: Upload-arti
          uses: actions/upload-artifact@v4
          with:
             name: test_folder
             path:  ${{github.workspace}}
+
+      -  name: check Upload artifacts
+         if: steps.Upload-arti.outcome == 'true'
+         run: echo "all successfully uploaded"
+
 
         
    Deployment:
