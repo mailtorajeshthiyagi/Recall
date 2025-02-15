@@ -1,0 +1,55 @@
+name: Deployment_git_cache
+on:
+    push:
+        branches:
+          - master
+    workflow_dispatch:
+jobs:
+   Testing:
+     runs-on: ubuntu-latest
+     steps:
+      - name: "invokeing repo"
+        uses: actions/checkout@v4
+      - name: check cache
+        id: cache-setup
+        uses: actions/cache@v4
+        with:
+            name: Create cache setup
+            path: node_modules
+            key: Cache-setup-${{hashFiles('**/package-lock.json')}}
+            restored-key:
+                Cache-setup-
+      -  name: Upload repository
+         uses: actions/upload-artifacts@v4
+         with:
+            name: Upload artifacts
+            path: ${{ github.workspace }}
+
+        
+   Deployment:
+     needs: Testing
+     runs-on: ubuntu-latest
+     steps:
+      - name: "invokeing repo"
+        uses: actions/checkout@v4
+      - name: check cache
+        id: cache-setup
+        uses: actions/cache@v4
+        with:
+            name: Create cache setup
+            path: node_modules
+            key: Cache-setup-${{hashFiles('**/package-lock.json')}}
+            restored-key:
+                Cache-setup-
+      -  name: Download Artifacts
+         uses: actions/download-artifacts@v4
+         with:
+            name: download artifacts
+            path: ${{ github.workspace }}
+
+
+
+
+
+
+    
