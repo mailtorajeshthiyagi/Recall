@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
         script_file: ${{steps.nam_list.outputs.script_file}}
+    environment: testing
     env:
        APPNAME: ${{ $vars.APPLICATIONNAME }}
     steps:
