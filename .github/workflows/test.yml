@@ -40,6 +40,10 @@ jobs:
         with:
           name: Upload 
           path: ${{github.workspace}} 
+      - name: get environtment name
+        run:
+          echo ${{ $vars.APPLICATIONNAME}}
+      
 
   deploy:
        needs: lint
