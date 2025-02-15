@@ -14,13 +14,12 @@ jobs:
         id: cache-setup
         uses: actions/cache@v4
         with:
-            name: Create cache setup
             path: node_modules
             key: Cache-setup-${{hashFiles('**/package-lock.json')}}
             restore-keys:
                 Cache-setup-
       -  name: install NPM1
-         if: failure() && steps.cache-setup.outputs.Cache-hit == 'true'
+         if: failure() && steps.cache-setup.outputs == 'failure'
          run: npm install      
       
       -  name: Upload repository1
@@ -40,7 +39,6 @@ jobs:
         id: cache-setup
         uses: actions/cache@v4
         with:
-            name: Create cache setup
             path: node_modules
             key: Cache-setup-${{hashFiles('**/package-lock.json')}}
             restore-keys:
