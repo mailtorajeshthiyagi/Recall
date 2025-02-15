@@ -19,8 +19,8 @@ jobs:
             key: Cache-setup-${{hashFiles('**/package-lock.json')}}
             restored-key:
                 Cache-setup-
-      -  name: Upload repository
-         uses: actions/upload-artifacts@v4
+      -  name: Upload repository1
+         uses: actions/upload-artifact@v4
          with:
             name: Upload artifacts
             path: ${{ github.workspace }}
@@ -42,7 +42,7 @@ jobs:
             restored-key:
                 Cache-setup-
       -  name: Download Artifacts
-         uses: actions/download-artifacts@v4
+         uses: actions/download-artifact@v4
          with:
             name: download artifacts
             path: ${{ github.workspace }}
