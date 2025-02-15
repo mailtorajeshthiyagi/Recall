@@ -19,7 +19,7 @@ jobs:
             key: Cache-setup-${{hashFiles('**/package-lock.json')}}
             restored-key:
                 Cache-setup-
-      -  name: install NPM
+      -  name: install NPM1
          if: steps.cache-setup.outputs.Cache-hit == 'false'
          run: npm install      
       
