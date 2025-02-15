@@ -10,7 +10,7 @@ jobs:
     outputs:
         script_file: ${{steps.nam_list.outputs.script_file}}
     env:
-       APPNAME: APPLICATIONNAME
+       APPNAME: ${{ $vars.APPLICATIONNAME }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -18,8 +18,7 @@ jobs:
         id: nam_list
         env:
           anv: "rajesh"
-        run: |
-         
+        run: |         
          echo  "script_file=anv" >> $env:GITHUB_OUTPUT
       - name: cache_module_installation
         uses: actions/cache@v4
@@ -44,7 +43,7 @@ jobs:
           path: ${{github.workspace}} 
       - name: get environtment name1
         run:
-          echo ${{ $vars.APPLICATIONNAME}}
+          echo APPNAME
       
 
   deploy:
