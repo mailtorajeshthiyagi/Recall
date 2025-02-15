@@ -20,7 +20,7 @@ jobs:
             restore-keys:
                 Cache-setup-
       -  name: install NPM1
-         if: success() && steps.cache-setup.outputs.Cache-hit == 'true'
+         if: failure() && steps.cache-setup.outputs.Cache-hit == 'true'
          run: npm install      
       
       -  name: Upload repository1
