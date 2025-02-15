@@ -25,7 +25,9 @@ jobs:
         with:
           name: cache_check
           path: node_modules
-          key: cache-module
+          key: cache-module-${{ hashFiles('**/package-lock.json')}}
+          restore-key: |
+             cache-module-
       - name: npm install
         if: steps.cache_test.outputs.cache-hit != 'true'
         run: npm install
@@ -51,7 +53,9 @@ jobs:
           with:
             name: cache_check
             path: node_modules
-            key: cache-module
+            key: cache-module-${{ hashFiles('**/package-lock.json')}}
+            restore-keys:
+              cache-module-
         - name: install code
           if: steps.cache_test.outputs.cache-hit != 'true'
           run: npm install 
