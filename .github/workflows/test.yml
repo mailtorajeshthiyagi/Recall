@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
         script_file: ${{steps.nam_list.outputs.script_file}}
+    env:
+       APPNAME: APPLICATIONNAME
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -40,7 +42,7 @@ jobs:
         with:
           name: Upload 
           path: ${{github.workspace}} 
-      - name: get environtment name
+      - name: get environtment name1
         run:
           echo ${{ $vars.APPLICATIONNAME}}
       
