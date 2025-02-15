@@ -17,7 +17,7 @@ jobs:
             name: Create cache setup
             path: node_modules
             key: Cache-setup-${{hashFiles('**/package-lock.json')}}
-            restored-key:
+            restore-keys:
                 Cache-setup-
       -  name: install NPM1
          if: steps.cache-setup.outputs.Cache-hit == 'false'
@@ -43,7 +43,7 @@ jobs:
             name: Create cache setup
             path: node_modules
             key: Cache-setup-${{hashFiles('**/package-lock.json')}}
-            restored-key:
+            restore-keys:
                 Cache-setup-
       -  name: Download Artifacts
          uses: actions/download-artifact@v4
