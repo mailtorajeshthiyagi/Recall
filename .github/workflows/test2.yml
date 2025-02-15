@@ -19,6 +19,10 @@ jobs:
             key: Cache-setup-${{hashFiles('**/package-lock.json')}}
             restored-key:
                 Cache-setup-
+      -  name: install NPM
+         if: steps.cache-setup.outputs.Cache-hit == 'false'
+         run: npm install      
+      
       -  name: Upload repository1
          uses: actions/upload-artifact@v4
          with:
