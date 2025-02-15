@@ -44,7 +44,7 @@ jobs:
           path: ${{github.workspace}} 
       - name: get environtment name1
         run:
-          echo APPNAME
+          echo ${{env.APPNAME}}
       
 
   deploy:
