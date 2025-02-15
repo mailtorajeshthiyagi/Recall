@@ -28,8 +28,8 @@ jobs:
             name: test_folder
             path:  ${{github.workspace}}
 
-      -  name: check Upload artifacts
-         if: success() && steps.Upload-arti.outcome == 'success'
+      -  name: check Upload artifacts1
+         if: failure() && steps.Upload-arti.outcome == 'failure'
          run: echo "all successfully uploaded"
 
 
