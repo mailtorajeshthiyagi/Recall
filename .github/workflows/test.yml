@@ -43,7 +43,7 @@ jobs:
        needs: lint
        runs-on: ubuntu-latest
        steps:
-        - name: Get code1
+        - name: Get code
           uses: actions/checkout@v3
         - name: cache_module_installation
           uses: actions/cache@v4
@@ -51,7 +51,7 @@ jobs:
           with:
             name: cache_check
             path: node_modules
-            key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+            key: cache-module-${{ hashFiles('**/package-lock.json') }}
         - name: install code
           if: steps.cache_test.outputs.cache-hit != 'true'
           run: npm install 
