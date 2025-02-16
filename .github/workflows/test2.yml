@@ -20,7 +20,9 @@ jobs:
                 Cache-setup-
       - name: install NPM1
         if: failure() && steps.cache-setup1.outputs != 'false'
-        run: npm install      
+        run: npm install 
+      -  name: Npm testing command
+         run: npm test     
       -  name: Upload repository1
          id: Upload-arti
          uses: actions/upload-artifact@v4
