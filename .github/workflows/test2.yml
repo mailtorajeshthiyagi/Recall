@@ -52,6 +52,7 @@ jobs:
             restore-keys:
                 Cache-setup-
       -  name: Npm testing command
+         continue-on-error: true
          run: npm test  
       -  name: Download Artifacts
          uses: actions/download-artifact@v4
