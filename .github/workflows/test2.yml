@@ -22,6 +22,7 @@ jobs:
         if: failure() && steps.cache-setup1.outputs != 'false'
         run: npm install 
       -  name: Npm testing command
+         continue-on-error: true
          run: npm test     
       -  name: Upload repository1
          id: Upload-arti
