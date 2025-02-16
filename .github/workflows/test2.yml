@@ -11,16 +11,16 @@ jobs:
       - name: "invokeing repo"
         uses: actions/checkout@v4
       - name: check cache
-        id: cache-setup
+        id: cache-setup1
         uses: actions/cache@v4
         with:
             path: node_modules
             key: Cache-setup-${{hashFiles('**/package-lock.json')}}
             restore-keys:
                 Cache-setup-
-      -  name: install NPM1
-         run: npm install      
-      
+      - name: install NPM1
+        if: steps.cache-setup1.outputs != 'success'
+        run: npm install      
       -  name: Upload repository1
          id: Upload-arti
          uses: actions/upload-artifact@v4
