@@ -19,7 +19,7 @@ jobs:
             restore-keys:
                 Cache-setup-
       - name: install NPM1
-        if: steps.cache-setup1.outputs != 'success'
+        if: failure() && steps.cache-setup1.outputs != 'false'
         run: npm install      
       -  name: Upload repository1
          id: Upload-arti
