@@ -15,6 +15,7 @@ jobs:
             - name : check repository
               uses: actions/checkout@v4
             - name: npm install
+              continue-on-error: true
               uses: actions/setup-node@v3
               with:
                  node-version: ${{matrix.nV}}
