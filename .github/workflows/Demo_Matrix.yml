@@ -3,13 +3,13 @@ on: [push, workflow_dispatch]
 jobs:
     
     building:
+        env: 
+            raj: "rajesh"
         continue-on-error: true
         strategy:
             matrix:
                 os: [windows-latest, ubuntu-latest]
-                nV: [13,14,15]
-              data: [rajesh,kamal]
-
+                nV: [13,14,15]              
         runs-on: ${{ matrix.os }}
         steps:
             - name : check repository
@@ -21,7 +21,7 @@ jobs:
             - name: npm install
               run: npm ci 
             - name : echo names
-              run: echo ${{matrix.data}}
+              run: echo ${{ env.raj }}}
                     
             - name: build code
               run: npm run build
