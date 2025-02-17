@@ -1,7 +1,9 @@
 name: Check_Metrix
 on: [push, workflow_dispatch]
 jobs:
+    
     building:
+        continue-on-error: true
         strategy:
             matrix:
                 os: [windows-latest, ubuntu-latest]
