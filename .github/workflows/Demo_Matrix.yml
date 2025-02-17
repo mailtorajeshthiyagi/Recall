@@ -21,7 +21,8 @@ jobs:
             - name: npm install
               run: npm ci 
             - name : echo names
-              run: echo ${{ env.raj }}}
+              continue-on-error: true
+              run: echo ${{ env.raj }}
                     
             - name: build code
               run: npm run build
