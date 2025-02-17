@@ -8,6 +8,7 @@ jobs:
             matrix:
                 os: [windows-latest, ubuntu-latest]
                 nV: [13,14,15]
+              data: [rajesh,kamal]
 
         runs-on: ${{ matrix.os }}
         steps:
@@ -19,6 +20,8 @@ jobs:
                  node-version: ${{matrix.nV}}
             - name: npm install
               run: npm ci 
+            - name : echo names
+              run: echo ${{matrix.data}}
                     
             - name: build code
               run: npm run build
