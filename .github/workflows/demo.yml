@@ -7,14 +7,14 @@ jobs:
   Build_code:
       strategy:
           matrix:
-             OS: [windows-latest, ubuntu-latest]
+             os: [windows-latest, ubuntu-latest]
              ns: [14,15,16]
              include:
-              - node-version: 18
-              - OS: ubuntu-latest
+              - ns: 18
+              - os: ubuntu-latest
              exclude:
-              - node-version: 14
-              - OS: windows-latest
+              - ns: 14
+              - os: windows-latest
 
       runs-on: ${{ matrix.OS}}
       
