@@ -7,11 +7,11 @@ jobs:
   Build_code:
       strategy:
           matrix:
-             OS: [windows-latest, ubuntu-latet]
+             OS: [windows-latest, ubuntu-latest]
              ns: [14,15,16]
              include:
               - node-version: 18
-              - OS: windows-latest
+              - OS: ubuntu-latest
 
       runs-on: ${{ matrix.OS}}
       
