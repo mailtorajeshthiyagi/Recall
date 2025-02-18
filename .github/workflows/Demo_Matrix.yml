@@ -1,5 +1,8 @@
 name: Check_Metrix
-on: [push, workflow_dispatch]
+on: 
+  push:
+    branches: master11
+
 jobs:
     
     building:
