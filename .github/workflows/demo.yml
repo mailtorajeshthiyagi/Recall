@@ -1,0 +1,31 @@
+name: Matrix-demo
+on: 
+ push:
+  branches:
+    - master    
+jobs:
+  Build_code:
+      strategy:
+          matrix:
+             OS: [windows-latest, ubuntu-latet]
+             ns: [14,15,16]
+             include:
+              - node-version: 18
+              - Os: windows-latest
+
+      runs-on: ${{ matrix.OS}}
+      
+      steps:
+        - name: check_repository1
+          uses: actions/checkout@v4 
+        - name: install node versions
+          uses: actions/setup-node@v3
+          with:
+            node-verision: ${{ matrix.ns }}
+            
+
+
+
+    
+
+    
