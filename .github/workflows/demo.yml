@@ -11,11 +11,11 @@ jobs:
              ns: [14,15,16]
              include:
               - ns: 18
-              - os: ubuntu-latest
+                os: ubuntu-latest
              exclude:
               - ns: 14
-              - os: windows-latest
-      runs-on: ${{ matrix.os}}      
+                os: windows-latest
+      runs-on: ${{ matrix.os }}
       steps:
         - name: check_repository1
           uses: actions/checkout@v4 
