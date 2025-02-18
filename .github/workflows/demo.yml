@@ -15,9 +15,7 @@ jobs:
              exclude:
               - ns: 14
               - os: windows-latest
-
-      runs-on: ${{ matrix.OS}}
-      
+      runs-on: ${{ matrix.os}}      
       steps:
         - name: check_repository1
           uses: actions/checkout@v4 
