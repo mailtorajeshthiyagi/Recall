@@ -11,7 +11,7 @@ jobs:
              ns: [14,15,16]
              include:
               - node-version: 18
-              - Os: windows-latest
+              - OS: windows-latest
 
       runs-on: ${{ matrix.OS}}
       
@@ -21,7 +21,7 @@ jobs:
         - name: install node versions
           uses: actions/setup-node@v3
           with:
-            node-verision: ${{ matrix.ns }}
+            node-version: ${{ matrix.ns }}
             
 
 
