@@ -20,7 +20,7 @@ jobs:
         id: send_var
         run: |
            $a = "my name is rajesh"
-           write-output "script_file=$a"> 
+           write-output "script_file=$a">> $GITHUB_OUTPUT
       - name: Install dependencies
         run: npm ci
       - name: Lint code
@@ -45,7 +45,6 @@ jobs:
       - name: Test code
         id: Test-status
         run: npm run test
-
   build:
-     needs: lint
+     needs: test
      uses: ./.github/workflows/reusuable_workflow.yml
