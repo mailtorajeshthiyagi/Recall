@@ -1,7 +1,6 @@
 name: Check_Metrix
 on: 
-  push:
-    branches: master11111
+  workflow_dispatch:
 
 jobs:
     

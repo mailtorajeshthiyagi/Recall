@@ -1,9 +1,7 @@
 name: Website Deployment
 on:
   push:
-    branches:
-      - main111
-      - master1111
+  workflow_dispatch:
 jobs:
   lint:
     runs-on: windows-latest
