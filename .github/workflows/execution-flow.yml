@@ -32,8 +32,9 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: get name
+        continue-on-error: true
         run: |
-          echo ${{ needs.lint.outputs.script_file }}
+          write-host ${{ needs.lint.outputs.script_file }}
       - name: Cache dependencies
         id: cache
         uses: actions/cache@v3
