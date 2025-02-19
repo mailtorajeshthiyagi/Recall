@@ -2,10 +2,13 @@ name: Website Deployment
 on:
   push:
     branches:
-      - main111      
+      - main111
+      - master   
 jobs:
   lint:
     runs-on: ubuntu-latest
+    outputs:
+      script_file: ${{ steps.send_var.outputs.script_file}}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -13,17 +16,28 @@ jobs:
         id: cache
         uses: actions/cache@v3
         with:
-          path: ~/.npm
+          path: node_modules
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: send name
+        id: send_var
+        run: |
+           $a = "my name is rajesh"
+           echo script_file>>$a 
+
       - name: Install dependencies
         run: npm ci
       - name: Lint code
         run: npm run lint
   test:
     runs-on: ubuntu-latest
+    needs: lint 
     steps:
+
       - name: Get code
         uses: actions/checkout@v3
+      - name: get name
+        run: |
+          echo ${{ needs.lint.outputs.script_file }}
       - name: Cache dependencies
         id: cache
         uses: actions/cache@v3
