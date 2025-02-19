@@ -1,0 +1,13 @@
+name: Reusable_WF
+on: 
+ push:
+   branches: master             
+ workflow_call:
+jobs:
+    deploying:
+      runs-on: windows-latest
+      steps:
+        - name: write status
+          run: |
+             write-host "deploying"
+

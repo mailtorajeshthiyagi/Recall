@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main111
-      - master111
+      - master
 jobs:
   lint:
     runs-on: ubuntu-latest

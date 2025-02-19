@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main111
-      - master   
+      - master
 jobs:
   lint:
     runs-on: windows-latest
@@ -22,8 +22,7 @@ jobs:
         id: send_var
         run: |
            $a = "my name is rajesh"
-           write-output "script_file=$a">>$env:GITHUB_OUTPUT
-
+           write-output "script_file=$a"> 
       - name: Install dependencies
         run: npm ci
       - name: Lint code
@@ -32,7 +31,6 @@ jobs:
     runs-on: windows-latest
     needs: lint 
     steps:
-
       - name: Get code
         uses: actions/checkout@v3
       - name: get name
@@ -55,3 +53,5 @@ jobs:
         with:
           name: test-report
           path: test.json
+  build:
+     uses: .\.github\workflows\reusuable_workflow.yml
