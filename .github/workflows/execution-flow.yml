@@ -54,4 +54,5 @@ jobs:
           name: test-report
           path: test.json
   build:
+     needs: lint
      uses: .\.github\workflows\reusuable_workflow.yml

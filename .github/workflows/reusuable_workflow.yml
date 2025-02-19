@@ -1,7 +1,5 @@
 name: Reusable_WF
-on: 
- push:
-   branches: master             
+on:        
  workflow_call:
 jobs:
     deploying:
