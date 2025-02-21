@@ -4,7 +4,11 @@ on:
   workflow_dispatch:
 jobs:
   lint:
-    runs-on: windows-latest
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+
+    runs-on: ${{ matrix.os}}
     outputs:
       script_file: ${{ steps.send_var.outputs.script_file}}
     steps:
