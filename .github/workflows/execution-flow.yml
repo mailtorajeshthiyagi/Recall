@@ -21,10 +21,11 @@ jobs:
           path: node_modules
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: send name
+        if: ${{ runner.os == 'windows'}}
         id: send_var
         run: |
            $a = "my name is rajesh"
-           write-output "script_file=$a">> $GITHUB_OUTPUT
+           write-output "script_file=$a">> $GITHUB_OUTPUT  
       - name: Install dependencies
         run: npm ci
       - name: Lint code
