@@ -1,0 +1,56 @@
+name: Website Deployment
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  lint:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+
+    runs-on: ${{ matrix.os}}
+    outputs:
+      script_file: ${{ steps.send_var.outputs.script_file}}
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: send name
+        if: ${{ runner.os == 'windows'}}
+        id: send_var
+        run: |
+           $a = "my name is rajesh"
+           write-output "script_file=$a">> $GITHUB_OUTPUT  
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint code
+        run: npm run lint
+  test:
+    runs-on: windows-latest
+    needs: lint 
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: get name
+        continue-on-error: true
+        run: |
+          write-host ${{ needs.lint.outputs.script_file }}
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Test code
+        id: Test-status
+        run: npm run test
+  build:
+     needs: test
+     uses: ./.github/workflows/reusuable_workflow.yml
