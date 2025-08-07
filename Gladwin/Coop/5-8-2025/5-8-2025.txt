@@ -1,2 +1,9 @@
 Here the test text file for coding
+<<<<<<< HEAD
 THis is updated file
+=======
+
+
+
+This is updated file
+>>>>>>> new
